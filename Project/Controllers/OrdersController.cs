@@ -2,16 +2,31 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
+using static Project.Controllers.CustomersController;
+using static Project.Controllers.ProductsController;
 
 namespace Project.Controllers
 {
     public class Order {
-      public int id;
-       public string name;
+        public int ID { get; set; }
+        [Required]
+        public int Ammount { get; set; }
+        [Required]
+        public string Email { get; set; }
+        [Required]
+        public string Address { get; set; }
+        public string City { get; set; }
+        [Required]
+        public string Phone { get; set; }
+
+        //navigation properties
+        public Customer Customer { get; set; }
+        public Product Product { get; set; }
     }
     public class OrdersController : Controller
     {
@@ -49,7 +64,7 @@ namespace Project.Controllers
         [HttpPost]
         public IActionResult Edit(Order order)
         {
-            HttpResponseMessage response = client.PutAsJsonAsync("Order/" + order.id, order).Result;
+            HttpResponseMessage response = client.PutAsJsonAsync("Order/" + order.ID, order).Result;
             return RedirectToAction("Index");
         }
 

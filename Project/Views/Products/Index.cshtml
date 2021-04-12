@@ -1,0 +1,55 @@
+﻿@using static Project.Controllers.ProductsController 
+@model List<Product>
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<style>
+
+    .smallData{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+</style>
+
+<h1 class="text-center">Our Products</h1>
+
+<div class="container">
+
+    <div class="row">
+
+        @foreach (var item in Model)
+        {
+            if (item.Stock > 0)
+            {
+
+                <div class="col-md-4">
+
+                    <div class="card">
+                        <img src="..." class="card-img-top" alt="Product Image">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.Name</h5>
+                            <p class="card-text">@item.Description</p>
+
+                            <div class="smallData">
+                                <p>Price: <b>@item.Price</b></p>
+                                <p>Weight: <b>@item.Stock</b></p>
+                                <p>Weight: <b>@item.Weight</b></p>
+                                <p>Weight: <b>@item.Create_Date</b></p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            }
+        }
+
+    </div>
+
+</div>
