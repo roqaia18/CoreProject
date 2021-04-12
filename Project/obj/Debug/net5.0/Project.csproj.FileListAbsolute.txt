@@ -1,0 +1,11 @@
+C:\Users\HP\source\repos\Project\Project\obj\Debug\net5.0\Project.csprojAssemblyReference.cache
+C:\Users\HP\source\repos\Project\Project\obj\Debug\net5.0\Project.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\HP\source\repos\Project\Project\obj\Debug\net5.0\Project.AssemblyInfoInputs.cache
+C:\Users\HP\source\repos\Project\Project\obj\Debug\net5.0\Project.AssemblyInfo.cs
+C:\Users\HP\source\repos\Project\Project\obj\Debug\net5.0\Project.RazorAssemblyInfo.cache
+C:\Users\HP\source\repos\Project\Project\obj\Debug\net5.0\Project.RazorAssemblyInfo.cs
+C:\Users\HP\source\repos\Project\Project\obj\Debug\net5.0\staticwebassets\Project.StaticWebAssets.Manifest.cache
+C:\Users\HP\source\repos\Project\Project\obj\Debug\net5.0\staticwebassets\Project.StaticWebAssets.xml
+C:\Users\HP\source\repos\Project\Project\obj\Debug\net5.0\scopedcss\bundle\Project.styles.css
+C:\Users\HP\source\repos\Project\Project\obj\Debug\net5.0\Project.TagHelpers.input.cache
+C:\Users\HP\source\repos\Project\Project\obj\Debug\net5.0\Project.TagHelpers.output.cache
