@@ -12,7 +12,8 @@ using static Project.Controllers.ProductsController;
 
 namespace Project.Controllers
 {
-    public class Order {
+    public class Order
+    {
         public int ID { get; set; }
         [Required]
         public int Ammount { get; set; }
@@ -36,41 +37,45 @@ namespace Project.Controllers
         {
             //IEnumerable<Order> OrderList;
             string OrderList;
-            HttpResponseMessage response = client.GetAsync("Order").Result;
+            HttpResponseMessage response = client.GetAsync("https://localhost:44393/api/Orders").Result;
             OrderList = response.Content.ReadAsStringAsync().Result;
-            JsonConvert.DeserializeObject<IEnumerable<Order>>(OrderList);
-            return View(OrderList);
+            List<Order> allOrder = JsonConvert.DeserializeObject<IEnumerable<Order>>(OrderList).ToList();
+            return View(allOrder);
         }
 
-        public IActionResult Create() {
+        public IActionResult Create()
+        {
             return View(new Order());
         }
 
         [HttpPost]
         public IActionResult Create(Order order)
         {
-            HttpResponseMessage response = client.PostAsJsonAsync("Order", order).Result;
+            HttpResponseMessage response = client.PostAsJsonAsync("https://localhost:44393/api/Orders", order).Result;
+            TempData["SuccessMessage"] = "Order Add Successfully";
             return RedirectToAction("Index");
         }
         public IActionResult Edit(int id)
         {
-            HttpResponseMessage Response = client.GetAsync("Order/" + id.ToString()).Result;
+            HttpResponseMessage Response = client.GetAsync("https://localhost:44393/api/Orders/" + id.ToString()).Result;
             string OrderEdit = Response.Content.ReadAsStringAsync().Result;
-            JsonConvert.DeserializeObject<Order>(OrderEdit);
-                return View(OrderEdit);
-            
+            object OrderEditOBJ = JsonConvert.DeserializeObject<Order>(OrderEdit);
+            return View(OrderEditOBJ);
+
         }
 
         [HttpPost]
         public IActionResult Edit(Order order)
         {
-            HttpResponseMessage response = client.PutAsJsonAsync("Order/" + order.ID, order).Result;
+            HttpResponseMessage response = client.PutAsJsonAsync("https://localhost:44393/api/Orders/" + order.ID, order).Result;
+            TempData["SuccessMessage"] = "Order Updated Successfully";
             return RedirectToAction("Index");
         }
 
         public IActionResult Delete(int id)
         {
-            HttpResponseMessage response = client.DeleteAsync("Order/" + id.ToString()).Result;
+            HttpResponseMessage response = client.DeleteAsync("https://localhost:44393/api/Orders/" + id.ToString()).Result;
+            TempData["SuccessMessage"] = "Order Deleted Successfully";
             return RedirectToAction("Index");
         }
     }

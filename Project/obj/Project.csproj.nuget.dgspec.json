@@ -1,29 +1,34 @@
 {
   "format": 1,
   "restore": {
-    "D:\\ITI\\MVC Project\\CoreProject\\Project\\Project.csproj": {}
+    "C:\\Users\\HP\\Desktop\\ProjectCore\\Project\\CoreProject\\Project\\Project.csproj": {}
   },
   "projects": {
-    "D:\\ITI\\MVC Project\\CoreProject\\Project\\Project.csproj": {
+    "C:\\Users\\HP\\Desktop\\ProjectCore\\Project\\CoreProject\\Project\\Project.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ITI\\MVC Project\\CoreProject\\Project\\Project.csproj",
+        "projectUniqueName": "C:\\Users\\HP\\Desktop\\ProjectCore\\Project\\CoreProject\\Project\\Project.csproj",
         "projectName": "Project",
-        "projectPath": "D:\\ITI\\MVC Project\\CoreProject\\Project\\Project.csproj",
-        "packagesPath": "C:\\Users\\Mahmoud Hesham\\.nuget\\packages\\",
-        "outputPath": "D:\\ITI\\MVC Project\\CoreProject\\Project\\obj\\",
+        "projectPath": "C:\\Users\\HP\\Desktop\\ProjectCore\\Project\\CoreProject\\Project\\Project.csproj",
+        "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\HP\\Desktop\\ProjectCore\\Project\\CoreProject\\Project\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\DevExpress 20.2\\.NET Core Desktop Libraries\\Offline Packages",
+          "C:\\Program Files (x86)\\DevExpress 20.2\\Components\\Offline Packages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Mahmoud Hesham\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress .NET Core Desktop 20.2.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 20.2.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\DevExpress 20.2\\.NET Core Desktop Libraries\\System\\Components\\Packages": {},
+          "C:\\Program Files (x86)\\DevExpress 20.2\\Components\\System\\Components\\Packages": {},
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
@@ -50,6 +55,10 @@
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[5.0.5, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[5.0.2, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",
