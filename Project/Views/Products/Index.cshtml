@@ -14,34 +14,77 @@
         justify-content: space-between;
         align-items: center;
     }
-
+    .card{
+        position: relative;
+    }
+    .x{
+        position: absolute;
+        bottom: 95%;
+        left: 95%;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+        background-color: red;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        border-radius: 50%;
+        color: white;
+    }
+    .addCard{
+        display:flex;
+        justify-content:center;
+        align-items: center;
+        font-size: 80px;
+        background-color: antiquewhite;
+        color: black;
+        font-weight: bolder;
+    }
+    a, a:hover{
+        text-decoration: none;
+        color: black;
+    }
+    
 </style>
 
 <h1 class="text-center">Our Products</h1>
 
 <div class="container">
 
-    <div class="row">
+    @if( TempData["Added"] != null) {
+        <div class="alert alert-success p-3">New Product Added Successfully</div> 
+    }
+
+    <div class="row mt-3">
 
         @foreach (var item in Model)
         {
             if (item.Stock > 0)
             {
 
-                <div class="col-md-4">
+                <div class="col-md-4 pb-2">
 
                     <div class="card">
-                        <img src="..." class="card-img-top" alt="Product Image">
+                        <a asp-action="EachProduct" asp-route-id="@item.ID">                    
+                            <img src="~/Images/@{@item.Name@item.Price@item.Weight}.png" class="card-img-top img-fluid" alt="Product Image">
+                        </a>
                         <div class="card-body">
                             <h5 class="card-title">@item.Name</h5>
                             <p class="card-text">@item.Description</p>
 
                             <div class="smallData">
                                 <p>Price: <b>@item.Price</b></p>
-                                <p>Weight: <b>@item.Stock</b></p>
-                                <p>Weight: <b>@item.Weight</b></p>
-                                <p>Weight: <b>@item.Create_Date</b></p>
+                                @*<p>Weight: <b>@item.Weight</b></p>*@
+                                <p>Stock: <b>@item.Stock</b></p>
                             </div>
+
+                            <div class="smallData">
+                                <p>Created Date: <b>@item.Create_Date</b></p>
+                            </div>
+                        </div>
+                        <div class="x">
+                            <a asp-action="Delete" asp-route-id="@item.ID">X</a>
                         </div>
                     </div>
 
@@ -49,6 +92,22 @@
 
             }
         }
+
+        <div class="col-md-4">
+
+            <div class="card">
+
+                <a asp-action="Create">
+
+                    <div class="card-body addCard">
+                        +
+                    </div>
+
+                </a>                
+
+            </div>
+
+        </div>
 
     </div>
 
