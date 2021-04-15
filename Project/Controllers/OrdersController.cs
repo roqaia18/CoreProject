@@ -21,13 +21,15 @@ namespace Project.Controllers
         public string Email { get; set; }
         [Required]
         public string Address { get; set; }
+        public DateTime OrderDate { get; set; }
+
         public string City { get; set; }
         [Required]
         public string Phone { get; set; }
 
         //navigation properties
-        public Customer Customer { get; set; }
-        public Product Product { get; set; }
+        public virtual Customer Customer { get; set; }
+        public virtual List<Product> Products { get; set; }
     }
     public class OrdersController : Controller
     {
@@ -41,6 +43,16 @@ namespace Project.Controllers
             OrderList = response.Content.ReadAsStringAsync().Result;
             List<Order> allOrder = JsonConvert.DeserializeObject<IEnumerable<Order>>(OrderList).ToList();
             return View(allOrder);
+        }
+
+        public IActionResult EachProduct(int id)
+        {
+            string Order;
+            HttpResponseMessage response = client.GetAsync("https://localhost:44393/api/Orders/" + id).Result;
+            Order = response.Content.ReadAsStringAsync().Result;
+            ViewBag.CustomerName = JsonConvert.DeserializeObject<Order>(Order).Customer.Name;
+            ViewBag.allProducts = JsonConvert.DeserializeObject<Order>(Order).Products;
+            return View();
         }
 
         public IActionResult Create()

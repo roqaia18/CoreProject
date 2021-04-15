@@ -1,0 +1,32 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+<h2 class="text-center">@ViewBag.CustomerName Products</h2>
+
+<div class="container d-flex justify-content-center">
+
+    <div class="card w-50">
+        
+        <div class="card-body">
+
+            @foreach (var item in ViewBag.allProducts)
+            {
+                 <div class="py-2 my-2" style="border: 1px solid black">
+                     <img src="~/Images/@{@item.Name@item.Price@item.Weight}.png" 
+                        class="card-img-top img-fluid" alt="Product Image">
+
+                    <h5 class="card-title">@item.Name</h5>
+                    <p class="card-text">@item.</p>
+                 </div>
+            }
+
+        </div>
+        @*<div class="x">X</div>*@
+        
+    </div>
+
+</div>

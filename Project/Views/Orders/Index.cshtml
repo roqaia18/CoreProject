@@ -35,10 +35,10 @@
                 @Html.DisplayNameFor(model => model.Phone)
             </th>
             <th>
-                Customer ID
+                Customer Name
             </th>
             <th>
-                Product ID
+                Products
             </th>
             <th></th>
         </tr>
@@ -65,11 +65,17 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Phone)
                 </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Customer.Name)
+                </td>
+                <td>
+                    <a asp-action="EachProduct" asp-route-id="@item.ID">Order Items</a>
+                </td>
                 <!--  <td>
                        @Html.DisplayFor(modelItem => item.Customer.ID)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Product.ID)
+                        @Html.DisplayFor(modelItem => item.Products)
                     </td>
                 -->
 
