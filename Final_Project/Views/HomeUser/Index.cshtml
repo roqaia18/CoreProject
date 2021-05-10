@@ -1,0 +1,56 @@
+﻿@using static Project.Controllers.ProductsController
+@model List<Product>
+
+@{
+    ViewData["Title"] = "All Products";
+    Layout = "_UserLayout";
+}
+
+@{
+    if (@TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-dismissible alert-success">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>@TempData["SuccessMessage"]</strong>.
+        </div>
+    }
+}
+@*<h1>welcome to the user @ViewBag.user</h1>*@
+<h2 class="text-center font-weight-bold text-dark mb-5"> Our Products</h2>
+
+<div class="row d-flex  justify-content-center">
+    @foreach (var item in Model)
+    {
+
+
+        @if (item.Stock > 0)
+        {
+            <div class="card col-lg-3 col-md-5 d-flex mt-4 mt-md-0 mb-2 mr-3 bg-white">
+                <img class="card-img-top w-100" style="height:200px;" src="@item.Image" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">@item.Name</h5>
+                    <p class="card-text display-4 text-black-50">$@item.Price</p>
+                    <p class="text-danger">Available: @item.Stock</p>
+                    <div> <a asp-action="Details" asp-route-id="@item.ID" class="card-link btn btn-outline-secondary mb-1">Details</a></div>
+            @*@using (Html.BeginForm(actionName: "Cart", controllerName: "Home", method: FormMethod.Post, htmlAttributes: new { id = item.ID }))
+                {
+                    <div><button type="submit" class="card-link btn btn-outline-primary btn-block">Add To Cart</button></div>
+                }*@
+            <div> <a asp-controller="Cart" asp-action="Buy" asp-route-id="@item.ID" class="card-link btn btn-outline-primary btn-block">Add To Cart <i class="fa fa-shopping-cart"></i></a></div>
+                </div>
+            </div>
+            @*<div class="card col-lg-3 col-md-5 d-flex mt-4 mt-md-0 mb-2 mr-3">
+                <img class='mx-auto img-thumbnail' src="@item.Image" width="auto" height="auto" />
+                <div class="card-body text-center mx-auto">
+                    <div class='cvp'>
+                        <h5 class="card-title font-weight-bold">@item.Name</h5>
+                        <p class="card-text text-black-50">$@item.Price</p> <a asp-action="Details" asp-route-id="@item.ID" class="btn details px-auto">view details</a><br />
+                        <a asp-controller="Cart" asp-action="Buy" asp-route-id="@item.ID" class="btn btn-outline-primary px-auto">ADD TO CART</a>
+                    </div>
+                </div>
+            </div>*@
+
+        }
+
+    }
+</div>

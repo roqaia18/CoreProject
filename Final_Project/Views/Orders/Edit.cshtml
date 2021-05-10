@@ -1,0 +1,61 @@
+﻿@model Project.Controllers.Order
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "_Layout";
+}
+<div class="header bg-primary pb-6">
+    <div class="container-fluid">
+        <div class="header-body">
+            <div class="row align-items-center py-4">
+                <div class="col-lg-6 col-7">
+                    <h6 class="h2 text-white d-inline-block mb-0">Confirm Order</h6>
+                    <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                        <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                            <li class="breadcrumb-item"><a href="~/Home/Index">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="~/Orders/Index">Order</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Confirm</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--6">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="container">
+                    <div class="card-header border-0">
+                        <h3 class="mb-0">Confirm Order</h3>
+                    </div>
+                    <p>
+                        <h5>Order ID: </h5> @ViewBag.Order.ID
+                        <br />
+                        <h5>Customer Email: </h5> @ViewBag.Order.Email
+                        <br />
+                        <h5>Address: </h5>@ViewBag.Order.Address
+                        <br />
+                        <h5>City: </h5>@ViewBag.Order.City
+                        <br />
+                        <h5>Phone: </h5>@ViewBag.Order.Phone
+                    </p>
+                    <form asp-action="Edit">
+                        <div class="form-group">
+                            <h5>Confirm</h5>
+                            <input asp-for="Confirm" class="form-control" />
+                            <span asp-validation-for="Confirm" class="text-danger"></span>
+                        </div>
+                        <input type="submit" value="Confirm" class="btn btn-primary" />
+                    </form>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+        @section Scripts {
+            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        }

@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/assets/vendor/nucleo/css/nucleo.css" type="text/css">
+    <link rel="stylesheet" href="~/assets/css/argon.css?v=1.2.0" type="text/css">
+    <link rel="stylesheet" href="~/css/LayoutCSS.css" type="text/css">
+    <link rel="icon" href="~/img/logo.png" type="image/x-icon" sizes="10px">
+</head>
+<body>
+    <header>
+        <nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
+            <div class="scrollbar-inner">
+                <!-- Brand -->
+                <div class="sidenav-header  align-items-center">
+                    <a class="navbar-brand" href="javascript:void(0)">
+                        <img src="/img/logo.png" class="navbar-brand-img" alt="...">
+                    </a>
+                </div>
+                <div class="navbar-inner">
+                    <div class="collapse navbar-collapse" id="sidenav-collapse-main">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="~/Home/Index">
+                                    <i class="ni ni-tv-2 text-primary"></i>
+                                    <span class="nav-link-text">Dashboard</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="~/Customers/Index">
+                                    <i class="ni ni-single-02 text-yellow"></i>
+                                    <span class="nav-link-text">User</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="~/Products/Index">
+                                    <i class="bi bi-box text-green"></i>
+                                    <span class="nav-link-text">Product</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="~/Orders/Index">
+                                    <i class="ni ni-planet text-orange"></i>
+                                    <span class="nav-link-text">Orders</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div class="main-content" id="panel">
+            <!-- Topnav -->
+            <nav class="navbar navbar-top navbar-expand navbar-dark bg-primary border-bottom">
+                <div class="container-fluid">
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <!-- Navbar links -->
+                        <ul class="navbar-nav align-items-center  ml-md-auto ">
+                            <li class="nav-item d-xl-none">
+                                <!-- Sidenav toggler -->
+                                <div class="pr-3 sidenav-toggler sidenav-toggler-dark" data-action="sidenav-pin" data-target="#sidenav-main">
+                                    <div class="sidenav-toggler-inner">
+                                        <i class="sidenav-toggler-line"></i>
+                                        <i class="sidenav-toggler-line"></i>
+                                        <i class="sidenav-toggler-line"></i>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav align-items-center  ml-auto ml-md-0 ">
+                            <partial name="_LoginPartial" />
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <main role="main" class="pb-3">
+        @*<nav class="navbar navbar-expand-md navbar-light" style="width:400px">
+                <ol class="breadcrumb">
+                    @if (@ViewBag.Title != "Home")
+                    {
+                        <li class="breadcrumb-item"><a class="waves-effect" href="#">Dashboards</a></li>
+                        <li class="breadcrumb-item"><a class="waves-effect" href="#">Home</a></li>
+                        <li class="active">
+                            / @ViewBag.Title
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="breadcrumb-item"><a class="waves-effect" href="#">Dashboards</a></li>
+                        <li class="breadcrumb-item"><a class="waves-effect" href="#">Home</a></li>
+                    }
+
+                </ol>
+            </nav>*@
+   
+            @RenderBody()
+   
+
+    </main>
+
+    <footer class="border-top footer text-muted text-center text-blue" >
+        <div class="container">
+            &copy; @*2021 - Project*@ ITI Team - E-Commerce Website @*<a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>*@
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="~/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/assets/vendor/js-cookie/js.cookie.js"></script>
+    <script src="~/assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+    <script src="~/assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
+    <!-- Argon JS -->
+    <script src="~/assets/js/argon.js?v=1.2.0"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>

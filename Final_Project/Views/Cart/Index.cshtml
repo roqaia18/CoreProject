@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_UserLayout";
+}
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+<section class="jumbotron text-center">
+    <div class="container">
+        <h1 class="jumbotron-heading">Shopping CART</h1>
+    </div>
+</section>
+<div class="container mb-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="table-responsive">
+
+                @if (ViewBag.cart != null)
+                {
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col"></th>
+                                <th scope="col">Product</th>
+                                <th scope="col">Available</th>
+                                <th scope="col" class="text-center">Quantity</th>
+                                <th scope="col" class="text-right">Price</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in ViewBag.cart)
+                            {
+                                <tr>
+                                    <td><img src="@item.Product.Image" height="50" width="50" /> </td>
+                                    <td>@item.Product.Name</td>
+                                    <td>@item.Product.Stock In stock</td>
+                                    <td class="justify-content-center">@item.Quantity</td>
+                                    <td class="text-right">$@item.Product.Price</td>
+                                    <td class="text-right"><a asp-action="Remove" asp-route-id="@item.ID" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </a> </td>
+                                </tr>
+                            }
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td><strong>Total</strong></td>
+                                <td class="text-right"><strong>$@ViewBag.total</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    <h1>Your Cart is Empty</h1>
+                }
+            <div>
+                <a class="btn btn-secondary mr-4" asp-controller="HomeUser" asp-action="Index">Continue Shopping</a>
+                @if (ViewBag.cart != null)
+                {
+                    <a class="btn btn-success" asp-controller="Orders" asp-action="Create">CheckOut</a>
+                }
+
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

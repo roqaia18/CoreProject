@@ -1,0 +1,138 @@
+﻿@model IEnumerable<Project.Controllers.Order>
+
+@{
+    ViewData["Title"] = "Order";
+}
+
+<div class="header bg-primary pb-6">
+    <div class="container-fluid">
+        <div class="header-body">
+            <div class="row align-items-center py-4">
+                <div class="col-lg-6 col-7">
+                    <h6 class="h2 text-white d-inline-block mb-0">All Orders</h6>
+                    <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                        <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                            <li class="breadcrumb-item"><a href="~/Home/Index">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="~/Orders/Index">Order</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">All</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--6">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <!-- Card header -->
+                <div class="card-header border-0">
+                    <h3 class="mb-0">All Orders</h3>
+                </div>
+                <!-- Light table -->
+                <div class="table-responsive">
+                    <table class="table align-items-center table-flush">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ID)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Ammount)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Email)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Address)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.City)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Phone)
+                                </th>
+                                <th>
+                                    Products
+                                </th>
+                                <th>
+                                    Confirm Order
+                                </th>
+                                <th>
+                                    Delete
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr class="table-light border-dark">
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ID)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Ammount)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Email)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Address)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.City)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Phone)
+                                    </td>
+                                    <td>
+                                        <a asp-action="EachProduct" asp-route-id="@item.ID">Order Items</a>
+                                    </td>
+                                    <!--  <td>
+                                           @Html.DisplayFor(modelItem => item.User.Id)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Items)
+                                        </td>
+                                    -->
+
+                                    @if (item.Confirm == true)
+                                    {
+                                        <td style="color:green">
+                                            Order Confirm
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td>
+                                            <a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-warning btn-sm m-0 py-1 px-2 mr-1">Confirm Now</a>
+                                        </td>
+                                    }
+                                    <td>
+
+                                        <a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger btn-sm m-0 py-1 px-2">Delete</a>
+                                    </td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                    <!--<p>
+                        <a asp-action="Create" class="btn btn-info">Create New Order</a>
+                    </p>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@{
+    if (@TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-dismissible alert-success">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>@TempData["SuccessMessage"]</strong>.
+        </div>
+    }
+}

@@ -1,0 +1,227 @@
+﻿@model Final_Project.Controllers.HomeController
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<head>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['Month', 'Order'],
+          ['Now',   @Model.getNumberOfOrdersChart(0)],
+          ['4',  @Model.getNumberOfOrdersChart(1)],
+          ['3',  @Model.getNumberOfOrdersChart(2)],
+          ['2',  @Model.getNumberOfOrdersChart(3)],
+          ['1',  @Model.getNumberOfOrdersChart(4)]
+        ]);
+
+        var options = {
+            title: 'Orders in last 5 Month',
+          curveType: 'function',
+            legend: { position: 'bottom' },
+            color: 'red'
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+        chart.draw(data, options);
+      }
+    google.charts.load('current', { 'packages': ['bar'] });
+        google.charts.setOnLoadCallback(drawStuff);
+
+    function drawStuff() {
+    var data = new google.visualization.arrayToDataTable([
+    ['Month', 'Users'],
+    ['1', @Model.getNumberOfUsersJoinedChart(4)],
+    ['2', @Model.getNumberOfUsersJoinedChart(3)],
+    ['3', @Model.getNumberOfUsersJoinedChart(2)],
+    ['4', @Model.getNumberOfUsersJoinedChart(1)],
+    ['Now', @Model.getNumberOfUsersJoinedChart(0)]
+    ]);
+    var options = {
+    legend: { position: 'none' },
+    chart: {
+    title: 'Number of user in last 5 Month'
+    },
+    bar: { groupWidth: "40%" }
+    };
+
+    var chart = new google.charts.Bar(document.getElementById('top_x_div'));
+    // Convert the Classic options to Material options.
+    chart.draw(data, google.charts.Bar.convertOptions(options));
+    };
+    </script>
+</head>
+<body>  
+    <div class="header bg-primary pb-6">
+            <div class="container-fluid">
+                <div class="header-body">
+                    <div class="row align-items-center py-4">
+                        <div class="col-lg-6 col-7">
+                            <h6 class="h2 text-white d-inline-block mb-0">Home</h6>
+                            <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                                <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                                    <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Home</li>
+                                </ol>
+                            </nav>
+                        </div>
+                        <div class="col-lg-6 col-5 d-flex justify-content-lg-start">
+                            <a href="#" class="btn btn-sm btn-neutral">Filters</a>
+                            <select style="width:100px;" id="Select1" class="form-control float-right">
+                                <option value="a">All</option>
+                                <option value="w">Weak</option>
+                                <option value="m">Month</option>
+                                <option value="y">Year</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card card-stats">
+                                <!-- Card body -->
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <h5 class="card-title text-uppercase text-muted mb-0">New users</h5>
+                                            <span class="h2 font-weight-bold mb-0" id="User">@Model.getNumberOfUsersJoined('a')</span>
+                                        </div>
+                                        <div class="col-auto">
+                                            <div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow">
+                                                <i class="ni ni-chart-pie-35"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card card-stats">
+                                <!-- Card body -->
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <h5 class="card-title text-uppercase text-muted mb-0">Orders</h5>
+                                            <span class="h2 font-weight-bold mb-0" id="Order">@Model.getNumberOfOrders('a')</span>
+                                        </div>
+                                        <div class="col-auto">
+                                            <div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
+                                                <i class="bi bi-bag-check text-white"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card card-stats">
+                                <!-- Card body -->
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <h5 class="card-title text-uppercase text-muted mb-0">Product</h5>
+                                            <span class="h2 font-weight-bold mb-0" id="Proudect">@Model.getMostProductSaled('a')</span>
+                                        </div>
+                                        <div class="col-auto">
+                                            <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
+                                                <i class="bi bi-box text-white text-center"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid mt--6">
+            <div class="row">
+                <div class="col-xl-8">
+                    <div class="card bg-default">
+                        <div class="card-header bg-transparent">
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <h6 class="text-light text-uppercase ls-1 mb-1">Overview</h6>
+                                    <h5 class="h3 text-white mb-0">User</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <!-- Chart -->
+                            <div class="chart">
+                                <!-- Chart wrapper -->
+                                <canvas id="top_x_div" class="chart-canvas"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4">
+                    <div class="card">
+                        <div class="card-header bg-transparent">
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <h6 class="text-uppercase text-muted ls-1 mb-1">Performance</h6>
+                                    <h5 class="h3 mb-0">Total orders</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <!-- Chart -->
+                            <div class="chart">
+                                <canvas id="curve_chart" class="chart-canvas"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @*<div class="row">
+                    <div class="col-md-5">
+                        <div class="card" style="height:400px;width:500px">
+                            <div class="card-body" id="top_x_div" style="height:400px;width:450px"></div>
+                        </div>
+                    </div>
+                    <div class="col-1" style="margin-right:10px">
+
+                    </div>
+                    <div class="col-md-5">
+                        <div class="card" style="height:400px;width:500px">
+                            <div class="card-body" id="curve_chart" style="height:400px;width:450px"></div>
+                        </div>
+                    </div>
+            </div>*@
+        </div>
+    <script>
+            document.getElementById("Select1").onchange = () => {
+                if (document.getElementById("Select1").value == "a") {
+                    document.getElementById("User").innerHTML =  @Model.getNumberOfUsersJoined('a');
+                    document.getElementById("Order").innerHTML =  @Model.getNumberOfOrders('a');
+                    document.getElementById("Proudect").innerHTML =  "@Model.getMostProductSaled('a')";
+                    console.log("all");
+                }
+                else if (document.getElementById("Select1").value == "w") {
+                    document.getElementById("User").innerHTML =  @Model.getNumberOfUsersJoined('w');
+                    document.getElementById("Order").innerHTML =  @Model.getNumberOfOrders('w');
+                    document.getElementById("Proudect").innerHTML = "@Model.getMostProductSaled('w')";
+                }
+                else if (document.getElementById("Select1").value == "m") {
+                    document.getElementById("User").innerHTML =  @Model.getNumberOfUsersJoined('m');
+                    document.getElementById("Order").innerHTML = @Model.getNumberOfOrders('m');
+                    document.getElementById("Proudect").innerHTML =  "@Model.getMostProductSaled('m')";
+                }
+                else {
+                    document.getElementById("User").innerHTML =  @Model.getNumberOfUsersJoined('y');
+                    document.getElementById("Order").innerHTML =  @Model.getNumberOfOrders('y');
+                    document.getElementById("Proudect").innerHTML = " @Model.getMostProductSaled('y')";
+                }
+     };
+    </script>
+</body>
+
+

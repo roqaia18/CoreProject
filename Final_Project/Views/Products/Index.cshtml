@@ -1,0 +1,149 @@
+﻿@using static Project.Controllers.ProductsController
+@model List<Product>
+
+@{
+    ViewData["Title"] = "Proudect";
+}
+
+<style>
+
+    .smallData {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .card {
+        border-radius: 20px;
+        background: #fff;
+        box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
+        transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+        padding: 14px 80px 18px 36px;
+        cursor: pointer;
+        position: relative;
+        border-color: white;
+    }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+        }
+
+        .card img {
+            height: 200px;
+            width: 200px
+        }
+
+    .x {
+        position: absolute;
+        bottom: 95%;
+        left: 95%;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+        background-color: red;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        border-radius: 50%;
+        color: white;
+    }
+
+    .addCard {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 80px;
+        background-color: antiquewhite;
+        color: black;
+        font-weight: bolder;
+    }
+
+    a, a:hover {
+        text-decoration: none;
+        color: black;
+    }
+</style>
+
+<div class="header bg-primary pb-6">
+    <div class="container-fluid">
+        <div class="header-body">
+            <div class="row align-items-center py-4">
+                <div class="col-lg-6 col-7">
+                    <h6 class="h2 text-white d-inline-block mb-0">All Product</h6>
+                    <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                        <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                            <li class="breadcrumb-item"><a href="~/Home/Index">Dashboard</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">All Product</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--6">
+
+        @if (TempData["Added"] != null)
+        {
+            <div class="alert alert-success p-3">New Product Added Successfully</div>
+        }
+
+        <div class="row mt-3">
+
+            @foreach (var item in Model)
+            {
+                if (item.Stock > 0)
+                {
+
+                    <div class="col-md-4 pb-2">
+
+                        <div class="card">
+                            <a asp-action="EachProduct" asp-route-id="@item.ID">
+                                <img src="@item.Image" class="card-img-top img-fluid" alt="Product Image">
+                            </a>
+                            <div class="card-body">
+                                <h5 class="card-title">@item.Name</h5>
+                                <p class="card-text">@item.Description</p>
+
+                                <div class="smallData">
+                                    <p>Price: <b>@item.Price</b></p>
+                                    @*<p>Weight: <b>@item.Weight</b></p>*@
+                                    <p>Stock: <b>@item.Stock</b></p>
+                                </div>
+
+                                <div class="smallData">
+                                    <p>Created Date: <b>@item.Create_Date</b></p>
+                                </div>
+                            </div>
+                            <div class="x">
+                                <a asp-action="Delete" asp-route-id="@item.ID">X</a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                }
+            }
+
+            <div class="col-md-4">
+
+                <div class="card">
+
+                    <a asp-action="Create">
+
+                        <div class="card-body addCard">
+                            +
+                        </div>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>

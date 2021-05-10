@@ -1,0 +1,74 @@
+﻿@*@model Project.Controllers.ProductsController.Product*@
+
+@{
+    ViewData["Title"] = "Proudect Detils";
+}
+
+<style>
+    .smallData, .buttons {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+</style>
+<div class="header bg-primary pb-6">
+    <div class="container-fluid">
+        <div class="header-body">
+            <div class="row align-items-center py-4">
+                <div class="col-lg-6 col-7">
+                    <h6 class="h2 text-white d-inline-block mb-0">Info</h6>
+                    <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                        <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                            <li class="breadcrumb-item"><a href="~/Home/Index">Dashboard</a></li>
+                            <li class="breadcrumb-item"><a href="~/Products/Index">Product</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Info</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--6">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <!-- Card header -->
+                <div class="card-header border-0">
+                    <h3 class="mb-0">All Order</h3>
+                </div>
+
+                <h2 class="text-center">Product @ViewBag.currentProduct.Name</h2>
+
+                <div class="container d-flex justify-content-center">
+
+                    <div class="card w-50">
+                        <img src="@ViewBag.currentProduct.Image"
+                             class="card-img-top img-fluid" style="height:400px;" alt="Product Image">
+                        <div class="card-body">
+                            <h5 class="card-title">@ViewBag.currentProduct.Name</h5>
+                            <p class="card-text">@ViewBag.currentProduct.Description</p>
+
+                            <div class="smallData">
+                                <p>Price: <b>@ViewBag.currentProduct.Price</b></p>
+                                <p>Weight: <b>@ViewBag.currentProduct.Weight</b></p>
+                                <p>Stock: <b>@ViewBag.currentProduct.Stock</b></p>
+                            </div>
+
+                            <div class="smallData">
+                                <p>Created Date: <b>@ViewBag.currentProduct.Create_Date</b></p>
+                            </div>
+                        </div>
+                        @*<div class="x">X</div>*@
+                        <div class="buttons my-2">
+                            <a class="btn btn-warning" asp-action="Edit" asp-route-id="@ViewBag.currentProduct.ID">Update</a>
+                            <a class="btn btn-danger" asp-action="Delete" asp-route-id="@ViewBag.currentProduct.ID">Delete</a>
+                        </div>
+                    </div>
+
+                </div>
+                </div>
+</div>
+</div>
+</div>

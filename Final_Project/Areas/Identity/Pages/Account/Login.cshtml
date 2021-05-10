@@ -1,0 +1,128 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Log in";
+    Layout = "_UserLayout";
+}
+
+<style>
+    body {
+        align-items: center;
+    }
+    .card {
+        width: 900px;
+        border-radius: 20px;
+        border-color: white;
+        box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+        justify-items:center;
+    }
+    button {
+        border-radius: 20px;
+        border: 1px solid #405a62;
+        background-color: white;
+        color: #405a62;
+        font-size: 12px;
+        font-weight: bold;
+        padding: 12px 45px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        transition: transform 80ms ease-in;
+        align-items: center;
+    }
+
+        button:active {
+            transform: scale(0.85);
+        }
+        button:hover {
+            background-color: #405a62;
+            color: #FFFFFF;
+        }
+
+        button:focus {
+            outline: none;
+        }
+    .form-control {
+        background-color: #eee;
+        border: none;
+        padding: 12px 15px;
+        margin: 8px 0;
+        width: 70%;
+        height: 35px;
+        border-radius: 20px;
+        transition: 0.2s ease-in;
+    }
+  
+</style>
+<body>
+
+    <div class="card" style="margin-left:100px">
+        <div class="row">
+            <div class="col-md-5">
+                <!-- <img src="C:\Users\HP\Desktop\Final Project\Final_Project\Final_Project\Final_Project\img\ecommerce-india.jpg" style="width:100px ;height:100px" />-->
+            </div>
+            <div class="col-md-7">
+                <div class="card-body">
+                    <form id="account" method="post">
+                        <h4>Use a local account to log in.</h4>
+                        <hr />
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="Input.Email"></label>
+                            <input asp-for="Input.Email" class="form-control" />
+                            <span asp-validation-for="Input.Email" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Input.Password"></label>
+                            <input asp-for="Input.Password" class="form-control" />
+                            <span asp-validation-for="Input.Password" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label asp-for="Input.RememberMe">
+                                    <input asp-for="Input.RememberMe" />
+                                    @Html.DisplayNameFor(m => m.Input.RememberMe)
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit">Log in</button>
+                        </div>
+                        <div class="form-group">
+                            <p>
+                                <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+                            </p>
+                            <p>
+                                <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+                            </p>
+                            @*<p>
+                                <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
+                            </p>*@
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <section>
+        @{
+            if ((Model.ExternalLogins?.Count ?? 0) != 0)
+            {
+                <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                    <div>
+                        <p>
+                            @foreach (var provider in Model.ExternalLogins)
+                            {
+                                <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                            }
+                        </p>
+                    </div>
+                </form>
+            }
+        }
+    </section>
+</body>
+    @section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+    }
